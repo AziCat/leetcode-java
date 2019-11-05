@@ -1,4 +1,4 @@
-package code.code50.question002;
+package common;
 
 /**
  * @author yan

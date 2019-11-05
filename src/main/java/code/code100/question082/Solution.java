@@ -1,6 +1,6 @@
 package code.code100.question082;
 
-import code.code50.question002.ListNode;
+import common.ListNode;
 
 /**
  * 给定一个排序链表，删除所有含有重复数字的节点，只保留原始链表中 没有重复出现 的数字。

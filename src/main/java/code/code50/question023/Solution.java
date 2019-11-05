@@ -1,6 +1,6 @@
 package code.code50.question023;
 
-import code.code50.question002.ListNode;
+import common.ListNode;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;

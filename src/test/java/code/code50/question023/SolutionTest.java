@@ -1,6 +1,6 @@
 package code.code50.question023;
 
-import code.code50.question002.ListNode;
+import common.ListNode;
 import org.junit.Assert;
 import org.junit.Test;
 

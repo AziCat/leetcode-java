@@ -1,6 +1,6 @@
 package code.code100.question086;
 
-import code.code50.question002.ListNode;
+import common.ListNode;
 
 /**
  * 给定一个链表和一个特定值 x，对链表进行分隔，使得所有小于 x 的节点都在大于或等于 x 的节点之前。

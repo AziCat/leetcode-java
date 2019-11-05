@@ -1,6 +1,6 @@
 package code.code50.question024;
 
-import code.code50.question002.ListNode;
+import common.ListNode;
 
 /**
  * 给定一个链表，两两交换其中相邻的节点，并返回交换后的链表。

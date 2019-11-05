@@ -1,10 +1,8 @@
 package code.code100.question083;
 
-import code.code50.question002.ListNode;
+import common.ListNode;
 import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class SolutionTest {
 

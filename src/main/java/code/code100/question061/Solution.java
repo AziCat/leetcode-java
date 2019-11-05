@@ -1,6 +1,6 @@
 package code.code100.question061;
 
-import code.code50.question002.ListNode;
+import common.ListNode;
 
 /**
  * 给定一个链表，旋转链表，将链表每个节点向右移动 k 个位置，其中 k 是非负数。

@@ -1,6 +1,6 @@
 package code.code50.question019;
 
-import code.code50.question002.ListNode;
+import common.ListNode;
 
 import java.util.ArrayList;
 import java.util.List;
