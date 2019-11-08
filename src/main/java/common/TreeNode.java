@@ -1,9 +1,6 @@
 package common;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Definition for a binary tree node
@@ -62,6 +59,29 @@ public class TreeNode {
         }
         build(layerList, st, nodes);
     }
+
+    public static void toList(List<TreeNode> nodes, List<Integer> ans) {
+        List<TreeNode> child = new ArrayList<>();
+        int nullCount = 0;
+        for (TreeNode node : nodes) {
+            if (node != null) {
+                ans.add(node.val);
+                child.add(node.left);
+                child.add(node.right);
+            } else {
+                nullCount++;
+                ans.add(null);
+            }
+        }
+        if (nullCount != nodes.size()) {
+            toList(child, ans);
+        } else {
+            while (!ans.isEmpty() && ans.get(ans.size() - 1) == null) {
+                ans.remove(ans.size() - 1);
+            }
+        }
+    }
+
 
     public static void main(String[] args) {
         Integer[] nodes = {5, 4, 7, 3, null, 2, null, -1, null, 9};
