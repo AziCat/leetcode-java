@@ -10,36 +10,31 @@ import java.util.List;
  */
 public class Solution {
     public List<List<Integer>> generate(int numRows) {
-        List<List<Integer>> ans = new ArrayList<>(numRows);
-        List<Integer> sub = new ArrayList<>();
-
-        return ans;
-    }
-
-    public List<List<Integer>> generate_(int numRows) {
-        List<List<Integer>> ans = new ArrayList<>(numRows);
-        if (numRows > 0) {
-            helper(ans, 0, numRows);
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> arrList;
+        if(numRows >= 1){
+            arrList = new ArrayList<>();
+            arrList.add(1);
+            result.add(arrList);
         }
-        return ans;
-    }
+        if(numRows >= 2){
+            arrList = new ArrayList<>();
+            arrList.add(1);
+            arrList.add(1);
+            result.add(arrList);
+        }
 
-    private void helper(List<List<Integer>> ans, int i, int numRows) {
-        if (i < numRows) {
-            if (i == 0) {
-                ans.add(Collections.singletonList(1));
-            } else {
-                List<Integer> sub = new ArrayList<>();
-                for (int j = 0; j <= i; j++) {
-                    if (j == 0 || j == i) {
-                        sub.add(1);
-                    } else {
-                        sub.add(ans.get(i - 1).get(j - 1) + ans.get(i - 1).get(j));
-                    }
-                }
-                ans.add(sub);
+        for (int i = 2; i < numRows; i++) {
+            int j = i - 1;
+            arrList = new ArrayList<>();
+            arrList.add(1);
+            while (j >= 1) {
+                arrList.add(result.get(i-1).get(j-1)+result.get(i-1).get(j));
+                j--;
             }
-            helper(ans, i + 1, numRows);
+            arrList.add(1);
+            result.add(arrList);
         }
+        return result;
     }
 }
