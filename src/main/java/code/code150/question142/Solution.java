@@ -21,17 +21,16 @@ public class Solution {
     /**
      * 不用额外空间，三指针
      * 假设链表的4个节点，S为起点，E为结束，A为答案节点，M是快慢指针相遇的节点
+     * S...A...M...E
      * Lsa指S到A的距离，以此类推。
      * 当快指针每次走两步，慢指针每次走一步，当在M相遇时慢指针走了Lx，快指针2Lx
      * 则有
      * Lx = Lsa + Lam
      * 2Lx = Lsa + Lam + Lme + 1 + Lam
-     *
+     * <p>
      * 推导得出
      * Lsa = Lme + 1
      * 所以ans指针从S开始走，慢指针从M开始走，当相遇时则到了A节点，返回A节点
-     *
-     * S...A...M...E
      *
      * @param head
      * @return
