@@ -26,7 +26,33 @@ import java.util.HashSet;
  * @date 2019/12/31
  */
 public class Solution {
-    private HashSet<Integer> cache = new HashSet<>();
+    /**
+     * 双指针思路
+     *
+     * @param n
+     * @return
+     */
+    public boolean isHappy(int n) {
+        int fast = n, slow = n;
+        do {
+            fast = help(fast);
+            fast = help(fast);
+            slow = help(slow);
+        } while (fast != slow);
+        return fast == 1;
+    }
+
+    private int help(int num) {
+        int sum = 0;
+        while (0 != num) {
+            int temp = num % 10;
+            sum = sum + temp * temp;
+            num /= 10;
+        }
+        return sum;
+    }
+
+    private final HashSet<Integer> cache = new HashSet<>();
 
     /**
      * 递归&哈希表
@@ -45,33 +71,4 @@ public class Solution {
         return 1 == sum || !cache.contains(sum) && isHappy_(sum);
     }
 
-    /**
-     * 快慢指针
-     *
-     * @param n
-     * @return
-     */
-    public boolean isHappy(int n) {
-        int fast = n, slow = n;
-        while (true) {
-            int sum = 0;
-            while (0 != fast) {
-                int temp = fast % 10;
-                sum = sum + temp * temp;
-                fast /= 10;
-            }
-            fast = sum;
-            if (fast == 1) {
-                return true;
-            } else {
-                if (fast < 10) {
-                    if (fast == slow) {
-                        return false;
-                    } else {
-                        slow = fast;
-                    }
-                }
-            }
-        }
-    }
 }

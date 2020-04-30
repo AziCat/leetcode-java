@@ -25,15 +25,50 @@ import java.util.PriorityQueue;
  * @date 2019/9/18
  */
 public class Solution {
-    public static void main(String[] args) {
-        PriorityQueue<ListNode> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(l -> l.val));
-        ListNode l1 = new ListNode(3);
-        ListNode l2 = new ListNode(2);
-        priorityQueue.add(l1);
-        priorityQueue.add(l2);
 
-        System.out.println(priorityQueue.poll().val);
-        System.out.println(priorityQueue.poll().val);
+    /**
+     * 分治归并
+     *
+     * @param lists
+     * @return
+     */
+    public ListNode mergeKLists(ListNode[] lists) {
+        int len = lists.length;
+        if (len == 0) {
+            return null;
+        } else if (len == 1) {
+            return lists[0];
+        }
+        int mid = len >>> 1;
+        ListNode[] l1 = new ListNode[mid];
+        ListNode[] l2 = new ListNode[len - mid];
+        System.arraycopy(lists, 0, l1, 0, mid);
+        System.arraycopy(lists, mid, l2, 0, len - mid);
+        return mergeNode(mergeKLists(l1), mergeKLists(l2));
+    }
+
+    private ListNode mergeNode(ListNode n1, ListNode n2) {
+        ListNode pre = new ListNode(0);
+        ListNode head = pre;
+        while (n1 != null || n2 != null) {
+            if (n1 == null) {
+                pre.next = n2;
+                n2 = n2.next;
+            } else if (n2 == null) {
+                pre.next = n1;
+                n1 = n1.next;
+            } else {
+                if (n1.val < n2.val) {
+                    pre.next = n1;
+                    n1 = n1.next;
+                } else {
+                    pre.next = n2;
+                    n2 = n2.next;
+                }
+            }
+            pre = pre.next;
+        }
+        return head.next;
     }
 
     /**
@@ -43,7 +78,7 @@ public class Solution {
      * @param lists
      * @return
      */
-    public ListNode mergeKLists(ListNode[] lists) {
+    public ListNode mergeKLists___(ListNode[] lists) {
         PriorityQueue<ListNode> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(l -> l.val));
         for (ListNode node : lists) {
             if (null != node) {

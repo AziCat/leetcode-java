@@ -1,9 +1,6 @@
 package code.code350.question349;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 给定两个数组，编写一个函数来计算它们的交集。

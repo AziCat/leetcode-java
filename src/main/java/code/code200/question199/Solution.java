@@ -29,7 +29,7 @@ import java.util.List;
  * @date 2019/12/30
  */
 public class Solution {
-    public List<Integer> rightSideView(TreeNode root) {
+    /*public List<Integer> rightSideView(TreeNode root) {
         List<Integer> ans = new ArrayList<>();
         helper(root, 1, ans);
         return ans;
@@ -43,5 +43,28 @@ public class Solution {
             helper(root.right, level + 1, ans);
             helper(root.left, level + 1, ans);
         }
+    }*/
+
+
+    /**
+     * ans列表保存二叉树每层最右边的节点
+     * @param root
+     * @return
+     */
+    public List<Integer> rightSideView(TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
+        helper(ans, 1, root);
+        return ans;
+    }
+
+    private void helper(List<Integer> ans, int level, TreeNode root) {
+        if (null == root) {
+            return;
+        }
+        if (level > ans.size()) {
+            ans.add(root.val);
+        }
+        helper(ans,level+1,root.right);
+        helper(ans,level+1,root.left);
     }
 }
