@@ -24,12 +24,37 @@ package code.code250.question221;
  */
 public class Solution {
     /**
-     * 动态规划
+     * 动态规则
      *
      * @param matrix
      * @return
      */
     public int maximalSquare(char[][] matrix) {
+        int rows = matrix.length;
+        if (rows == 0) {
+            return 0;
+        }
+        int cols = matrix[0].length;
+        int[][] dp = new int[rows + 1][cols + 1];
+        int ans = 0;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (matrix[i][j] == '1') {
+                    dp[i + 1][j + 1] = Math.min(dp[i][j + 1], Math.min(dp[i + 1][j], dp[i][j])) + 1;
+                    ans = Math.max(ans, dp[i + 1][j + 1]);
+                }
+            }
+        }
+        return ans * ans;
+    }
+
+    /**
+     * 动态规划
+     *
+     * @param matrix
+     * @return
+     */
+    public int maximalSquare__(char[][] matrix) {
         int rows = matrix.length, cols = rows > 0 ? matrix[0].length : 0;
         int[] dp = new int[cols + 1];
         int maxsqlen = 0, prev = 0;
