@@ -29,11 +29,11 @@ import java.util.List;
  * @date 2020/1/15
  */
 public class Solution {
-    private List<List<Integer>> ans = new ArrayList<>();
-    private List<Integer> temp = new ArrayList<>();
+    private final List<List<Integer>> ans = new ArrayList<>();
+    private final List<Integer> temp = new ArrayList<>();
     private int counter;
     private int k;
-    private int[] sum = {9, 17, 24, 30, 35, 39, 42, 44, 45};
+    private final int[] sum = {9, 17, 24, 30, 35, 39, 42, 44, 45};
 
     /**
      * 回溯

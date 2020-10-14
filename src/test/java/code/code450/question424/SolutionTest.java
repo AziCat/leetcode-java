@@ -1,4 +1,4 @@
-package code.code450.question486;
+package code.code450.question424;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -8,8 +8,8 @@ import static org.junit.Assert.*;
 public class SolutionTest {
 
     @Test
-    public void predictTheWinner() {
+    public void characterReplacement() {
         Solution solution = new Solution();
-        Assert.assertFalse(solution.PredictTheWinner(new int[]{9, 1, 5, 200, 7}));
+        Assert.assertEquals(4, solution.characterReplacement("AABABBA", 1));
     }
 }
