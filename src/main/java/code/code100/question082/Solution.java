@@ -21,7 +21,7 @@ import common.ListNode;
  * @date 2019/10/23
  */
 public class Solution {
-    public ListNode deleteDuplicates(ListNode head) {
+    public ListNode deleteDuplicates1(ListNode head) {
         ListNode ans = new ListNode(0);
         ListNode cur = ans;
         Integer i = null;
@@ -43,5 +43,26 @@ public class Solution {
             head = head.next;
         }
         return ans.next;
+    }
+
+    /**
+     * 递归
+     *
+     * @param head
+     * @return
+     */
+    public ListNode deleteDuplicates(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        if (head.val == head.next.val) {
+            while (head.next != null && head.val == head.next.val) {
+                head = head.next;
+            }
+            return deleteDuplicates(head.next);
+        } else {
+            head.next = deleteDuplicates(head.next);
+            return head;
+        }
     }
 }
