@@ -28,10 +28,31 @@ public class TreeNode {
      * @return
      */
     public static TreeNode build(Integer[] nodes) {
+        if (nodes.length == 0) {
+            return null;
+        }
         List<TreeNode> firstLayer = new ArrayList<>();
         firstLayer.add(new TreeNode(nodes[0]));
         build(firstLayer, 1, nodes);
         return firstLayer.get(0);
+    }
+
+    /**
+     * [1,2,3,null]
+     *
+     * @param data
+     * @return
+     */
+    public static TreeNode build(String data) {
+        data = data.replace("[", "").replace("]", "");
+        String[] dataArr = data.split(",");
+        Integer[] nodes = new Integer[dataArr.length];
+        for (int i = 0; i < dataArr.length; i++) {
+            if (!"null".equals(dataArr[i])) {
+                nodes[i] = Integer.parseInt(dataArr[i]);
+            }
+        }
+        return build(nodes);
     }
 
     private static void build(List<TreeNode> upLayerList, int st, Integer[] nodes) {
@@ -88,10 +109,37 @@ public class TreeNode {
         }
     }
 
+    public static String toString(TreeNode root) {
+        List<Integer> nodeList = new ArrayList<>();
+        if (null != root) {
+            serialize(Collections.singletonList(root), nodeList);
+        }
+        while (nodeList.get(nodeList.size() - 1) == null) {
+            nodeList.remove(nodeList.size() - 1);
+        }
+        return nodeList.toString().replace(" ", "");
+    }
+
+    public static void serialize(List<TreeNode> layer, List<Integer> nodeList) {
+        List<TreeNode> nextLayer = new ArrayList<>();
+        for (TreeNode node : layer) {
+            if (null != node) {
+                nodeList.add(node.val);
+                nextLayer.add(node.left);
+                nextLayer.add(node.right);
+            } else {
+                nodeList.add(null);
+            }
+        }
+        if (!nextLayer.isEmpty()) {
+            serialize(nextLayer, nodeList);
+        }
+
+    }
 
     public static void main(String[] args) {
         Integer[] nodes = {5, 4, 7, 3, null, 2, null, -1, null, 9};
         TreeNode treeNode = build(nodes);
-        System.out.println(treeNode);
+        System.out.println(TreeNode.toString(treeNode));
     }
 }
