@@ -23,7 +23,7 @@ public class Solution {
      * @return
      */
     public int xorOperation(int n, int start) {
-        int i = 1;
+        int i = 0;
         int ans = start;
         while (++i < n) {
             ans = ans ^ (start + 2 * i);
