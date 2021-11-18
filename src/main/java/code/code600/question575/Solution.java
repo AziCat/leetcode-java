@@ -43,4 +43,14 @@ public class Solution {
         }
         return ans;
     }
+    public void test(int count){
+        if (++count < 10) {
+            System.out.println(count);
+            test(count);
+        }
+    }
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        solution.test(0);
+    }
 }

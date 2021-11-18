@@ -36,20 +36,21 @@ import java.util.HashSet;
 public class Solution {
     public String getHint(String secret, String guess) {
         int a = 0, b = 0;
-        int[] map1 = new int[10];
-        int[] map2 = new int[10];
+        int[] map = new int[10];
         for (int i = 0; i < secret.length(); i++) {
             if (guess.charAt(i) == secret.charAt(i)) {
                 a++;
             } else {
-                int num1 = secret.charAt(i) - '0';
-                int num2 = guess.charAt(i) - '0';
-                map1[num1]++;
-                map2[num2]++;
+                int secretNum = secret.charAt(i) - '0';
+                int guessNum = guess.charAt(i) - '0';
+                //guess做减法，secret做加法
+                if (map[guessNum]-- > 0) {
+                    b++;
+                }
+                if (map[secretNum]++ < 0) {
+                    b++;
+                }
             }
-        }
-        for (int i = 0; i < 10; i++) {
-            b += Math.min(map2[i], map1[i]);
         }
         return a + "A" + b + "B";
     }

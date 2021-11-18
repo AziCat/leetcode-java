@@ -26,17 +26,19 @@ public class Solution {
     public int findPoisonedDuration(int[] timeSeries, int duration) {
         int ans = 0;
         if (timeSeries.length > 0) {
-            int pre = timeSeries[0];
-            int statusTime;
+            int[] range = new int[]{timeSeries[0], timeSeries[0] + duration};
             for (int i = 1; i < timeSeries.length; i++) {
-                statusTime = pre + duration;
-                if (statusTime > timeSeries[i]) {
-                    ans += timeSeries[i] - pre + duration;
-                } else {
-                    ans += duration;
-                    pre = timeSeries[i];
+                if (timeSeries[i] > range[1]) {
+                    //重置区间并计算
+                    ans += range[1] - range[0];
+                    range[0] = timeSeries[i];
+                    range[1] = timeSeries[i] + duration;
+                }else {
+                    //增长区间
+                    range[1] = timeSeries[i] + duration;
                 }
             }
+            ans += range[1] - range[0];
         }
         return ans;
     }
